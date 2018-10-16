@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">SubmitionQuiz2</string>
+    <string name="title_activity_league">LeagueActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="next_league">Next Match</string>
+    <string name="prev_league">Prev Match</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next_event_not_found">Maaf Data Next Event League tidak ditemukan</string>
+    <string name="paramsDetailEvent">paramsDetailEvent</string>
+    <string name="item_home_score">item_home_score</string>
+    <string name="item_away_score">item_away_score</string>
+    <string name="item_date_event">item_date_event</string>
+    <string name="item_home_team">item_home_team</string>
+    <string name="item_away_team">item_away_team</string>
+    <string name="item_home_formation">item_home_formation</string>
+    <string name="item_away_formation">item_away_formation</string>
+    <string name="item_home_shot">item_home_shot</string>
+    <string name="item_away_shot">item_away_shot</string>
+    <string name="item_home_goalkeeper">item_home_goalkeeper</string>
+    <string name="item_away_goalkeeper">item_away_goalkeeper</string>
+    <string name="item_home_defense">item_home_defense</string>
+    <string name="item_away_defense">item_away_defense</string>
+    <string name="item_home_midfield">item_home_midfield</string>
+    <string name="item_away_midfield">item_away_midfield</string>
+    <string name="item_home_forward">item_home_forward</string>
+    <string name="item_away_forward">item_away_forward</string>
+    <string name="item_home_badge">item_home_badge</string>
+    <string name="item_away_badge">item_away_badge</string>
+    <string name="item_home_id">item_home_id</string>
+    <string name="item_away_id">item_away_id</string>
+    <string name="item_eventdetail_id">item_eventdetail_id</string>
+    <string name="match_detail">Match Detail</string>
+    <string name="resource_eventsnextleague">eventsnextleague</string>
+    <string name="resource_eventspastleague">eventspastleague</string>
+    <string name="resource_vs">vs</string>
+    <string name="resource_shots">Shots</string>
+    <string name="resource_forward">Forward</string>
+    <string name="resource_midfield">Midfield</string>
+    <string name="resource_defense">Defense</string>
+    <string name="resource_goalkeeper">Goal Keeper</string>
+    <string name="resource_lineups">Lineups</string>
+    <string name="favorites">Favorites</string>
+</resources>

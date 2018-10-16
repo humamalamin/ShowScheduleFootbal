@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="navigation" type="id" />
+    <item name="txt_schedule" type="id" />
+    <item name="txt_hometeam" type="id" />
+    <item name="txt_homescore" type="id" />
+    <item name="txt_versus" type="id" />
+    <item name="txtawayscore" type="id" />
+    <item name="txt_awayteam" type="id" />
+    <item name="swipeRefresh" type="id" />
+    <item name="rvPrevEvent" type="id" />
+    <item name="pbPrevEvent" type="id" />
+    <item name="rvNextEvent" type="id" />
+    <item name="pbNextEvent" type="id" />
+    <item name="bottom_layout" type="id" />
+    <item name="pbDetailEvent" type="id" />
+    <item name="lyEventDetail" type="id" />
+</resources>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_prev_league"
+        android:icon="@drawable/ic_tropy"
+        android:enabled="true"
+        android:title="@string/prev_league"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/navigation_next_league"
+        android:icon="@drawable/ic_event"
+        android:enabled="true"
+        android:title="@string/next_league"
+        app:showAsAction="ifRoom"/>
+
+    <!--<item-->
+        <!--android:id="@+id/navigation_favorites"-->
+        <!--android:icon="@drawable/ic_favorite_black_24dp"-->
+        <!--android:enabled="true"-->
+        <!--android:title="@string/favorites"-->
+        <!--app:showAsAction="ifRoom"/>-->
+</menu>
