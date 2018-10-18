@@ -16,10 +16,10 @@
         android:title="@string/next_league"
         app:showAsAction="ifRoom"/>
 
-    <!--<item-->
-        <!--android:id="@+id/navigation_favorites"-->
-        <!--android:icon="@drawable/ic_favorite_black_24dp"-->
-        <!--android:enabled="true"-->
-        <!--android:title="@string/favorites"-->
-        <!--app:showAsAction="ifRoom"/>-->
+    <item
+        android:id="@+id/navigation_favorites"
+        android:icon="@drawable/ic_favorite_black_24dp"
+        android:enabled="true"
+        android:title="@string/favorites"
+        app:showAsAction="ifRoom"/>
 </menu>

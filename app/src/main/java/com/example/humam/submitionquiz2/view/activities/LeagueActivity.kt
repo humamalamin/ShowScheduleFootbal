@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBar
 import android.widget.LinearLayout
 import com.example.humam.submitionquiz2.R
+import com.example.humam.submitionquiz2.view.fragment.favorite.FavoriteFragment
 import com.example.humam.submitionquiz2.view.fragment.next.NextFragment
 import com.example.humam.submitionquiz2.view.fragment.prev.PrevFragment
 import org.jetbrains.anko.*
@@ -84,7 +85,11 @@ class LeagueActivity : AppCompatActivity() {
                 addFragment(nextFragment)
                 return@OnNavigationItemSelectedListener true
             }
-
+            R.id.navigation_favorites -> {
+                val favoFragment = FavoriteFragment.favoInstance()
+                addFragment(favoFragment)
+                return@OnNavigationItemSelectedListener true
+            }
         }
         false
     }

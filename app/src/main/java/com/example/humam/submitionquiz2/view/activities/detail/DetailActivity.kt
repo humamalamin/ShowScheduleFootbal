@@ -1,9 +1,11 @@
 package com.example.humam.submitionquiz2.view.activities.detail
 
+import android.database.sqlite.SQLiteConstraintException
 import android.graphics.Color
 import android.graphics.Typeface
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import com.example.humam.submitionquiz2.R.color.colorPrimary
 import com.example.humam.submitionquiz2.R.color.colorAccent
 import android.support.v4.widget.SwipeRefreshLayout
@@ -19,10 +21,13 @@ import com.example.humam.submitionquiz2.R.string.*
 import com.example.humam.submitionquiz2.api.ApiRequest
 import com.example.humam.submitionquiz2.model.Event
 import com.example.humam.submitionquiz2.model.Team
+import com.example.humam.submitionquiz2.model.db.FavoriteParamsDB
+import com.example.humam.submitionquiz2.utils.db
 import com.example.humam.submitionquiz2.utils.gone
 import com.example.humam.submitionquiz2.utils.visible
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.experimental.selects.select
 import org.jetbrains.anko.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
@@ -72,6 +77,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
     private lateinit var idEventDetail: String
 
     private var menuItem: Menu? = null
+    private var isFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -467,6 +473,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
     }
 
     private fun getEventDetail() {
+        favoriteState()
         presenter = DetailPresenter(this, ApiRequest(), Gson())
         presenter.getEventDetail(idEventDetail, itemHomeId, itemAwayId)
 
@@ -504,6 +511,7 @@ class DetailActivity : AppCompatActivity(), DetailView {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.detail_menu, menu)
         menuItem = menu
+        setFavorite()
         return true
     }
 
@@ -518,9 +526,66 @@ class DetailActivity : AppCompatActivity(), DetailView {
                 finish()
                 true
             }
+            R.id.add_to_favorite -> {
+                if (isFavorite) removeFromFavorite() else addToFavorite()
+
+                isFavorite = !isFavorite
+                setFavorite()
+                true
+            }
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun favoriteState(){
+        db.use {
+            val result = select(FavoriteParamsDB.TABLE_FAVORITE)
+                    .whereArgs("(EVENT_ID = {id})",
+                            "id" to idEventDetail)
+            val favorite = result.parseList(classParser<FavoriteParamsDB>())
+            if (!favorite.isEmpty()) isFavorite = true
+        }
+    }
+
+    private fun addToFavorite() {
+        try {
+            db.use {
+                insert(FavoriteParamsDB.TABLE_FAVORITE,
+                        FavoriteParamsDB.EVENT_ID to eventDetail.idEvent,
+                        FavoriteParamsDB.EVENT_TIME to eventDetail.dateEvent,
+                        FavoriteParamsDB.HOME_TEAM to eventDetail.strHomeTeam,
+                        FavoriteParamsDB.HOME_SCORE to eventDetail.intHomeScore,
+                        FavoriteParamsDB.AWAY_TEAM to eventDetail.strAwayTeam,
+                        FavoriteParamsDB.AWAY_SCORE to eventDetail.intAwayScore,
+                        FavoriteParamsDB.HOME_TEAM_ID to itemHomeId,
+                        FavoriteParamsDB.AWAY_TEAM_ID to itemAwayId)
+            }
+            snackbar(swipeRefresh, "Added to Favorite").show()
+        } catch (e: SQLiteConstraintException) {
+            snackbar(swipeRefresh, e.localizedMessage).show()
+        }
+    }
+
+    private fun removeFromFavorite() {
+        try {
+            db.use {
+                delete(FavoriteParamsDB.TABLE_FAVORITE, "(EVENT_ID = {id})",
+                        "id" to idEventDetail)
+            }
+            snackbar(swipeRefresh, "Removed to Favorite").show()
+        } catch (e: SQLiteConstraintException) {
+            snackbar(swipeRefresh, e.localizedMessage).show()
+        }
+    }
+
+    private fun setFavorite() {
+        if (isFavorite)
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,
+                    R.drawable.ic_added_to_favorites)
+        else
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this,
+                    R.drawable.ic_add_to_favorites)
     }
 
 }
